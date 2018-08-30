@@ -1,6 +1,6 @@
 #激活哪一个环境的配置文件
 # 默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：  
-#   开发环境：java -jar lapm_task-0.0.1-SNAPSHOT.war --spring.profiles.active=dev  
+#   开发环境：java -jar ***.jar --spring.profiles.active=dev  
 spring:
   profiles:
     active: dev
