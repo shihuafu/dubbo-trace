@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration name="defaultConfiguration" status="off" strict="true" monitorInterval="5">
+	<properties>
+
+		<property name="appName">dubbo-trace-web-manage</property>
+		<property name="logPath">/Users/fushihua/dev/logs</property>
+
+		<property name="patternlayout">%date{yyyy-MM-dd HH:mm:ss,SSS}|%level|%thread|%X{APP_CODE}|%class{36}|%M|%X{LOGIN_USER_ID}|%X{TRACE_ID}|%X{SPAN_ID}|%msg%xEx|$|$|%n</property>
+
+		<property name="applicationFilename">${logPath}/application/${appName}_applicationLog.log</property>
+		<property name="applicationFilenamePattern">${logPath}/application/${appName}_applicationLog_%d{yyyy-MM-dd}-%i.log</property>
+
+	</properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${patternlayout}" />
+		</Console>
+		<RollingRandomAccessFile name="Application" fileName="${applicationFilename}" filePattern="${applicationFilenamePattern}">
+			<PatternLayout pattern="${patternlayout}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="300MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<AsyncRoot level="info" includeLocation="true">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="Application" />
+		</AsyncRoot>
+	</Loggers>
+</Configuration>
