@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.fushihua.domain.SysConst;
+import com.fushihua.security.SecurityUser;
 import com.fushihua.util.EmptyUtils;
 import com.fushihua.util.LogUtils;
 import com.fushihua.util.UUIDUtils;
@@ -45,7 +46,7 @@ public class BaseControllerInterceptor extends HandlerInterceptorAdapter {
 		long startTime = System.currentTimeMillis();
 		request.setAttribute(BASE_CONTROLLER_START_TIME, startTime);
 		
-		String username = "fushihua";
+		String username = SecurityUser.getLoginUserId();
 		if (EmptyUtils.isEmpty(username)) {
 			username = "anonymous";
 		}
